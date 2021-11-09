@@ -95,6 +95,10 @@ Osoba chcąca zakupić produkt na aukcji.
 2.A. [Kupujący](#ac2) nie ma zamiaru wpłacać pieniędzy.
 * 2.A.1. Przejdź ponownie do punktu 2. [sprzedaż](#bc1)y
 
+4.A [Sprzedający](#ac1) nie ma zamiaru przekazać produktu [Kupując](#ac2)emu.
+* 4.A.1. Zwróć pieniądze [Kupując](#ac2)emu.
+* 4.A.2. Przejdź ponownie do punktu 2. [sprzedaż](#bc1)y
+
 ---
 
 <a id="uc3"></a>
