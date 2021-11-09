@@ -15,11 +15,11 @@ Specyfikacja wymagań funkcjonalnych w ramach informatyzacji procesu sprzedaży 
 **Opis:** Proces biznesowy opisujący sprzedaż za pomocą mechanizmu aukcyjnego. |
 
 **Scenariusz główny:**
-1. [Sprzedający](#ac1) wystawia produkt na aukcję. ([UC1](#uc1))
-2. [Kupujący](#ac2) oferuje kwotę za produkt wyższą od aktualnie najwyższej oferty. ([BR1](#br1))
-3. [Kupujący](#ac2) wygrywa aukcję ([BR2](#br2))
-4. [Kupujący](#ac2) przekazuje należność Sprzedającemu.
-5. [Sprzedający](#ac1) przekazuje produkt Kupującemu.
+1. [Sprzedający](#ac1) wystawia produkt na aukcję. ([UC1](#uc1) wystawienie produktu na aukcję.)
+2. [Kupujący](#ac2) oferuje([UC3](#uc3)) kwotę za produkt wyższą od aktualnie najwyższej oferty. ([BR1](#br1) złożenie oferty)
+3. [Kupujący](#ac2) wygrywa aukcję ([BR2](#br2) rozstrzygnięcie aukcji.)
+4. [Kupujący](#ac2) przekazuje należność([UC2](#uc2)) [Sprzedając](#ac1)emu.
+5. [Sprzedający](#ac1) przekazuje produkt([UC2](#uc2)) [Kupując](#ac2)emu.
 
 **Scenariusze alternatywne:** 
 
@@ -50,10 +50,11 @@ Osoba chcąca zakupić produkt na aukcji.
 
 [Sprzedający](#ac1):
 * [UC1](#uc1): Wystawienie produktu na aukcję
-* ...
+* [UC2](#uc2): Przekazanie produktu [Kupując](#ac2)emu
 
 [Kupujący](#ac2)
-* ...
+*  [UC3](#uc3): przebicie oferty
+*  [UC2](#uc2): Odbiór produktu od [Sprzedając](#ac1)ego
 
 ---
 <a id="uc1"></a>
@@ -77,21 +78,47 @@ Osoba chcąca zakupić produkt na aukcji.
 ---
 
 <a id="uc2"></a>
-### UC2: ...
+### UC2: Przekazanie produktu [Kupując](#ac2)emu
 
 **Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2), ...
 
 **Scenariusz główny:**
-1. ...
+1. [Kupujący](#ac2), w rezultacie [rozstrzygnięci](#br2)a aukcji, wygrywa.
+2. [Kupujący](#ac2) przekazuje pieniądze do Systemu.
+3. System potwierdza płatność.
+4. [Sprzedający](#ac1) przekazuje produkt [Kupując](#ac2)emu.
+5. System przekazuje pieniądze [Sprzedając](#ac1)emu.
+4. [Kupujący](#ac2) otrzymuje produkt.
 
 **Scenariusze alternatywne:** 
 
-1.A. ...
-* 4.A.1. ...
+2.A. [Kupujący](#ac2) nie ma zamiaru wpłacać pieniędzy.
+* 2.A.1. Przejdź ponownie do punktu 2. [sprzedaż](#bc1)y
 
 ---
 
-## Obiewkty biznesowe (inaczje obiekty dziedzinowe lub informatycjne)
+<a id="uc3"></a>
+### UC3: Przebicie oferty
+
+**Aktorzy:** [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. [Kupujący](#ac2) [składa](#br1) ofertę wysyłając kwotę do Systemu obsługi.
+2. System weryfikuje kwotę i stan konta [Kupując](#ac2)ego.
+3. System informuje o pomyślnym przebiciu kwoty.
+4. System prezentuje cenę za produkt.
+
+
+**Scenariusze alternatywne:** 
+
+2.A. Kwota jest niższa od aktualnie najwyższej.
+* 2.A.1. System informuje [Kupując](#ac2)ego o zaistniałej sytuacji - kwota pozostaje niezmieniona.
+
+2.B Niewystarczające środki na koncie [Kupując](#ac2)ego.
+* 2.B.1 System informuje [Kupując](#ac2)ego o zaistniałej sytuacji. 
+
+---
+## Obiekty biznesowe (inaczej obiekty dziedzinowe lub informatycjne)
 
 ### BO1: Aukcja
 
@@ -100,6 +127,10 @@ Aukcja jest formą zawierania transakcji kupna-sprzedaży, w której Sprzedając
 ### BO2: Produkt
 
 Fizyczny lub cyfrowy obiekt, który ma zostać sprzedany w ramach aukcji.
+
+### BO3: Kwota
+
+Pieniądze oferowane za produkt w wyniku licytacji. Minimalną kwotą jest cena wywoławcza.
 
 ## Reguły biznesowe
 
@@ -117,8 +148,10 @@ Aukcję wygrywa ten z [Kupujący](#ac2)ch, który w momencie jej zakończenia (u
 ## Macierz CRUDL
 
 
-| Przypadek użycia                                  | Aukcja | Produkt | ... |
-| ------------------------------------------------- | ------ | ------- | --- |
-| UC1: Wystawienia produktu na aukcję               |    C   |    C    | ... |
-| ???                                               |  ...   |  ...    | ... |
+| Przypadek użycia                                  | Aukcja | Produkt | Kwota      |
+| ------------------------------------------------- | ------ | ------- | ---------- |
+| UC1: Wystawienie produktu na aukcję               |    C   |    C    |      C     |
+| UC3: Przebicie oferty                             |        |         |      U     |
+| UC2: Przekazanie produktu [Kupując](#ac2)emu      |    D   |    D    |      D     |
+
 
