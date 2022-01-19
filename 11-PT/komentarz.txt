@@ -1,0 +1,8 @@
+zadanie 1.
+średni czas odpowiedzi: 15149
+przepustowość: 28.8/min
+zadanie 2.
+przepustowość: 2.1/sec
+Dla 10 drukarek przepustowość różniła się znacząco od założonej.
+liczba drukarek: 28
+przepustowość: 5.5/sec
